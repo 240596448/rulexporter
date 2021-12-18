@@ -51,3 +51,9 @@ jobs:
         with:
           files: ./${{ env.PACKAGE_MASK }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Публикация в hub.oscript.io
+        shell: bash
+        run: opm push -f ./${{ env.PACKAGE_MASK }} --token ${{ env.TOKEN }} -c stable
+        env:
+          TOKEN: ${{ secrets.OSHUB_TOKEN }}
